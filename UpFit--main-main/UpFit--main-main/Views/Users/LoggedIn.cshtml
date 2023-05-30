@@ -1,0 +1,121 @@
+﻿@model UpFit__main.Models.User
+@{
+    ViewBag.Title = "LoggedIn";
+    var alo = Session["SubscriptionType"].ToString();
+}
+
+@using (Html.BeginForm())
+{
+    if (alo == "0")
+    {
+        @Html.Partial("_NavBarBasic")
+    }
+    else
+    {
+        @Html.Partial("_NavBarPremium")
+    }
+
+    @Html.AntiForgeryToken()
+    <div class="d-flex justify-content-center align-items-center flex-column" style="background-color: rgba(255,255,255,0.3); ">
+        <h2> Hello, @Model.FirstName </h2>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+            @Html.ActionLink("Add Meal", "Create", "Meals", new { area = "" }, new { @class = "btn btn-primary btn-custom" })
+            @Html.ActionLink("See Meal History", "MealHistory", "Meals", new { area = "" }, new { @class = "btn btn-primary btn-custom" })
+
+            <div>
+                <div class="d-flex justify-content-center align-items-center flex-column" style="height: 100vh; background-color: rgba(255,255,255,0.3); ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center my-4">My Daily Nutrients</h1>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12">
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Total Amount</th>
+                                            <th>Consumed</th>
+                                            <th>Progress</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Protein</td>
+                                            <td>50g</td>
+                                            <td>30g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="50">60%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carbohydrates</td>
+                                            <td>100g</td>
+                                            <td>100g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fat</td>
+                                            <td>20g</td>
+                                            <td>0g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20">0%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fiber</td>
+                                            <td>30g</td>
+                                            <td>10g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 33.33%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="30">33.33%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamins</td>
+                                            <td>Varies</td>
+                                            <td>50g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Minerals</td>
+                                            <td>
+                                                Varies
+                                            </td>
+                                            <td>50g</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
